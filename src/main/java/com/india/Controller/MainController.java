@@ -125,7 +125,17 @@ public class MainController {
 
     @GetMapping("AddAddress")
     public String addAddress(Model model){
+        List<Country> countryList = mainService.countryList();
+        model.addAttribute("list", countryList);
         model.addAttribute("addAddress", new Address());
         return "AddAddress";
+    }
+
+    @GetMapping("GetCityListByStateId/{sid}")
+    public String getCityList(@PathVariable("sid") int stateId){
+        List<City> cityList = mainService.cityListBySateId(stateId);
+        System.out.println(cityList);
+        Gson gson = new Gson();
+        return gson.toJson(mainService.cityListBySateId(stateId));
     }
 }

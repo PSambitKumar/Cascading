@@ -28,7 +28,119 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
     <title>Add Address</title>
 </head>
-<body>
+<body style="margin: 100px">
 
+<script>
+    $(document).ready(function (){
+        // For State Drop Down From CountryId From State Table
+        $('#countryDrop').on('change', function (){
+            var countryId = $(this).val();
+
+            $.ajax({
+                url : "GetStateListByCountryId/"+countryId,
+                type : "GET",
+                success : function (result){
+                    var result = JSON.parse(result);
+                    console.log(result);
+                    var s = '';
+                    for(var i = 0; i < result.length; i++) {
+                        var id =
+                            s += '<option value="' + result[i].sid + '">' + result[i].sname + '</option>';
+                    }
+                    $('#stateDrop').html(s);
+                }
+            });
+        });
+
+
+        // For City Drop Down From SateId From City Table
+        $('#stateDrop').on('change', function (){
+            var cityId = $(this).val();
+
+            $.ajax({
+                url : "GetCityListByStateId/"+cityId,
+                type : "GET",
+                success : function (result){
+                    var result = JSON.parse(result);
+                    console.log(result);
+                    var s = '';
+                    for(var i = 0; i < result.length; i++) {
+                        var id =
+                            s += '<option value="' + result[i].cityid + '">' + result[i].cityname + '</option>';
+                    }
+                    $('#cityDrop').html(s);
+                }
+            });
+        });
+
+    });
+</script>
+
+<form:form action="SaveAddress" method="post" modelAttribute="addAddress">
+    <div style="margin: auto" class="form-group col-md-12">
+        <div class="form-group row required">
+
+
+            <div class="col-md-3">
+                <label class="form-label control-label" >Select Country Name<span style="color: red">*</span></label>
+                <select class="form-select" aria-label="Default select example" id="countryDrop">
+
+                    <option value="Select">Select</option>
+                    <c:forEach items="${list}" var="e">
+                        <option value="${e.cid}">${e.cname}</option>
+                    </c:forEach>
+                </select>
+                    <%--                    <small class="form-text text-muted" >Name must not contains number</small>--%>
+                <div id="namealert"></div>
+            </div>
+
+
+            <div class="col-md-3">
+                <label class="form-label" >Select State Name</label>
+                <select class="form-select" aria-label="Default select example" id="stateDrop">
+                    <option value="Select">Select</option>
+                </select>
+                    <%--                    <small class="form-text text-muted">Personal details are don't shared</small>--%>
+                <div id="stateAlert"></div>
+            </div>
+
+
+            <div class="col-md-3">
+                <label class="form-label" >Select City Name</label>
+                <form:select class="form-select" aria-label="Default select example" id="cityDrop" path="cityId">
+                    <option value="Select">Select</option>
+                </form:select>
+                    <%--                    <small class="form-text text-muted">Personal details are don't shared</small>--%>
+                <div id="cityAlert"></div>
+            </div>
+
+
+            <div class="col-md-3">
+                <label class="form-label" >Enter Address</label>
+                <form:input path="addr" type="text" class="form-control" id="inputCity" placeholder="Enter Address"/>
+                    <%--                    <small class="form-text text-muted">Personal details are don't shared</small>--%>
+                <div id="stateAlert"></div>
+            </div>
+
+        </div>
+
+        <form:hidden path="aid"/>
+
+        <div style="margin: auto; margin-top: 20px" class="form-group row col-md-8">
+
+            <div class="form-group row col-md-3">
+                <button id="submit"   class="btn btn-success">Submit</button>
+            </div>
+
+            <div style="margin-left: 10px" class="form-group row col-md-3">
+                <button onclick="window.location='Home'; return false;" class="btn btn-danger">Cancel</button>
+            </div>
+
+        </div>
+
+        <div id="display"></div>
+
+    </div>
+</form:form>
 </body>
 </html>

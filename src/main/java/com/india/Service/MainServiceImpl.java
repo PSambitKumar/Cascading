@@ -91,6 +91,11 @@ public class MainServiceImpl implements MainService {
     }
 
     @Override
+    public List<City> cityListBySateId(int sid) {
+        return cityRepository.findAllByStateId(sid);
+    }
+
+    @Override
     public List<State> stateList() {
         return stateRepository.findAll();
     }
