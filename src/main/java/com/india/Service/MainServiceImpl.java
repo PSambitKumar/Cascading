@@ -116,6 +116,41 @@ public class MainServiceImpl implements MainService {
         return result;
     }
 
+//    @Override
+//    public CountryBean editCountry(int cid) {
+//        Country country = countryRepository.getById(cid);
+//        CountryBean countryBean = new CountryBean();
+//       countryBean.setCid(country.getCid());
+//       countryBean.setCname(country.getCname());
+//        return countryBean;
+//    }
+
+    @Override
+    public Country editCountry(int cid) {
+        Country country = countryRepository.getById(cid);
+        return country;
+    }
+
+    @Override
+    public String updateCountry(Country country) {
+        String result = null;
+        try {
+            Country country1 = new Country();
+//            Country country1 = new Country();
+//            country.setCid(countryBean.getCid());
+//            country.setCname(countryBean.getCname());
+            country1 = countryRepository.save(country);
+            if(country1 != null)
+                result = "Success";
+            else
+                result = "Fail";
+        }catch (Exception e){
+            e.printStackTrace();
+            result = "Fail";
+        }
+        return result;
+    }
+
     @Override
     public List<State> stateList() {
         return stateRepository.findAll();

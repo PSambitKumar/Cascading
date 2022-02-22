@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.security.SecureRandom;
 import java.util.List;
 
 @Controller
@@ -150,5 +149,32 @@ public class MainController {
         else
             System.out.println("Failed to Add Address");
        return "Home";
+    }
+
+//    @GetMapping("editCountry/{id}")
+//    public String editCountry(@PathVariable("id") int cid, Model model){
+//        CountryBean countryBean = mainService.editCountry(cid);
+//        model.addAttribute("editCountry", countryBean);
+//        System.out.println(countryBean);
+//        return "EditCountry";
+
+
+    @GetMapping("editCountry/{id}")
+    public String editCountry(@PathVariable("id") int cid, Model model){
+        Country country = mainService.editCountry(cid);
+        model.addAttribute("editCountry", country);
+//        System.out.println(country);
+        return "EditCountry";
+    }
+
+    @GetMapping("UpdateCountry")
+    public String updateCountry(Country country){
+        System.out.println(country);
+//        String result = mainService.saveCountry(countryBean);
+//        if(result.equalsIgnoreCase("Success"))
+//            System.out.println("Country Updated Successfully!!");
+//        else
+//            System.out.println("Failed to Update Country!!");
+        return "Home";
     }
 }
