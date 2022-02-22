@@ -1,6 +1,7 @@
 package com.india.Controller;
 
 import com.google.gson.Gson;
+import com.india.Bean.AddressBean;
 import com.india.Bean.CityBean;
 import com.india.Bean.CountryBean;
 import com.india.Bean.StateBean;
@@ -127,15 +128,27 @@ public class MainController {
     public String addAddress(Model model){
         List<Country> countryList = mainService.countryList();
         model.addAttribute("list", countryList);
-        model.addAttribute("addAddress", new Address());
+        model.addAttribute("addAddressBean", new AddressBean());
         return "AddAddress";
     }
 
+    @ResponseBody
     @GetMapping("GetCityListByStateId/{sid}")
     public String getCityList(@PathVariable("sid") int stateId){
         List<City> cityList = mainService.cityListBySateId(stateId);
-        System.out.println(cityList);
+//        System.out.println(cityList);
         Gson gson = new Gson();
         return gson.toJson(mainService.cityListBySateId(stateId));
+    }
+
+    @PostMapping("SaveAddress")
+    public String saveAddress(AddressBean addressBean){
+        System.out.println(addressBean);
+        String result = mainService.saveAddress(addressBean);
+        if(result.equalsIgnoreCase("Success"))
+            System.out.println("Address Added Successfully ");
+        else
+            System.out.println("Failed to Add Address");
+       return "Home";
     }
 }

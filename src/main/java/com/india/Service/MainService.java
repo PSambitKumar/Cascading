@@ -1,5 +1,6 @@
 package com.india.Service;
 
+import com.india.Bean.AddressBean;
 import com.india.Bean.CityBean;
 import com.india.Bean.CountryBean;
 import com.india.Bean.StateBean;
@@ -17,4 +18,5 @@ public interface MainService {
     List<State> stateListByCountryId(int cid);
     String saveCity(CityBean cityBean);
     List<City> cityListBySateId(int sid);
+    String saveAddress(AddressBean addressBean);
 }

@@ -25,38 +25,49 @@
             margin-top: 5%;
         }
         .container1{
-            padding-top:20px;
-            padding-right:80px;
-            padding-left:50px;
-            padding-bottom:50px;
+            padding-top: 20px;
+            padding-right: 25px;
+            padding-left: 25px;
+            padding-bottom: 40px;
             border-radius: 21px;
             background: #e0e0e0;
             box-shadow:  5px 5px 11px #a1a1a1,-5px -5px 11px #ffffff;
-            margin-left:7%;
+            margin-left:5%;
             float: left;
         }
         .container2{
-            padding-top:20px;
-            padding-right:80px;
-            padding-left:50px;
-            padding-bottom:50px;
+            padding-top: 20px;
+            padding-right: 25px;
+            padding-left: 25px;
+            padding-bottom: 40px;
             border-radius: 21px;
             background: #e0e0e0;
             box-shadow:  5px 5px 11px #a1a1a1,-5px -5px 11px #ffffff;
-            margin-left:8%;
+            margin-left:5%;
 
             float: left;
         }
         .container3{
-            padding-top:20px;
-            padding-right:80px;
-            padding-left:50px;
-            padding-bottom:50px;
+            padding-top: 20px;
+            padding-right: 25px;
+            padding-left: 25px;
+            padding-bottom: 40px;
             border-radius: 21px;
             background: #e0e0e0;
             box-shadow:  5px 5px 11px #a1a1a1,-5px -5px 11px #ffffff;
-            margin-left:8%;
+            margin-left:5%;
             float:left;
+        }
+        .container4{
+            padding-top: 20px;
+            padding-right: 25px;
+            padding-left: 25px;
+            padding-bottom: 40px;
+            border-radius: 21px;
+            background: #e0e0e0;
+            box-shadow:  5px 5px 11px #a1a1a1,-5px -5px 11px #ffffff;
+            margin-left:5%;
+            float: left;
         }
 
         .copyright{
@@ -106,8 +117,17 @@
         <div class="container3">
             <div class="ccontainer">
                 <div class="a">City Master</div>
-                <div class="a1"><a href = "AddCity"><button class="btn btn-primary">AddCity</button></a></div>
-                <div class="a2"><a href = "ViewCity"><button class="btn btn-primary">ViewCity</button></a></div>
+                <div class="a1"><a href = "AddCity"><button class="btn btn-primary">Add City</button></a></div>
+                <div class="a2"><a href = "ViewCity"><button class="btn btn-primary">View City</button></a></div>
+
+            </div>
+        </div>
+
+        <div class="container4">
+            <div class="ccontainer">
+                <div class="a">Address Master</div>
+                <div class="a1"><a href = "AddAddress"><button class="btn btn-primary">Add Address</button></a></div>
+                <div class="a2"><a href = "ViewAddress"><button class="btn btn-primary">View Address</button></a></div>
 
             </div>
         </div>

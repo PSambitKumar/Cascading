@@ -1,11 +1,14 @@
 package com.india.Service;
 
+import com.india.Bean.AddressBean;
 import com.india.Bean.CityBean;
 import com.india.Bean.CountryBean;
 import com.india.Bean.StateBean;
+import com.india.Entity.Address;
 import com.india.Entity.City;
 import com.india.Entity.Country;
 import com.india.Entity.State;
+import com.india.Repository.AddressRepository;
 import com.india.Repository.CityRepository;
 import com.india.Repository.CountryRepository;
 import com.india.Repository.StateRepository;
@@ -23,6 +26,8 @@ public class MainServiceImpl implements MainService {
     StateRepository stateRepository;
     @Autowired
     CityRepository cityRepository;
+    @Autowired
+    AddressRepository addressRepository;
 
     @Override
     public String saveCountry(CountryBean countryBean) {
@@ -93,6 +98,22 @@ public class MainServiceImpl implements MainService {
     @Override
     public List<City> cityListBySateId(int sid) {
         return cityRepository.findAllByStateId(sid);
+    }
+
+    @Override
+    public String saveAddress(AddressBean addressBean) {
+        String result = null;
+        try {
+            Address address = new Address();
+            address.setAddr(addressBean.getAddr());
+            address.setCityId(addressBean.getCityId());
+            addressRepository.save(address);
+            result = "Success";
+        }catch (Exception e){
+            e.printStackTrace();
+            result = "Fail";
+        }
+        return result;
     }
 
     @Override

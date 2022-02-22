@@ -20,7 +20,7 @@
     <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"> </script>
     <title>AddCountry</title>
 </head>
-<body>
+<body style="margin: 100px">
 <form:form id="AddCountry" action="SaveCountry" method="post" modelAttribute="countryBean">
     <div style="margin: auto" class="form-group col-md-8">
 

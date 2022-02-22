@@ -76,7 +76,7 @@
     });
 </script>
 
-<form:form action="SaveAddress" method="post" modelAttribute="addAddress">
+<form:form action="SaveAddress" method="post" modelAttribute="addAddressBean">
     <div style="margin: auto" class="form-group col-md-12">
         <div class="form-group row required">
 
