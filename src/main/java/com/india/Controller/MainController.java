@@ -5,20 +5,14 @@ import com.india.Bean.AddressBean;
 import com.india.Bean.CityBean;
 import com.india.Bean.CountryBean;
 import com.india.Bean.StateBean;
-import com.india.Entity.Address;
 import com.india.Entity.City;
 import com.india.Entity.Country;
 import com.india.Entity.State;
-import com.india.Repository.CityRepository;
-import com.india.Repository.StateRepository;
 import com.india.Service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -151,30 +145,40 @@ public class MainController {
        return "Home";
     }
 
-//    @GetMapping("editCountry/{id}")
-//    public String editCountry(@PathVariable("id") int cid, Model model){
-//        CountryBean countryBean = mainService.editCountry(cid);
-//        model.addAttribute("editCountry", countryBean);
-//        System.out.println(countryBean);
-//        return "EditCountry";
-
-
     @GetMapping("editCountry/{id}")
-    public String editCountry(@PathVariable("id") int cid, Model model){
-        Country country = mainService.editCountry(cid);
-        model.addAttribute("editCountry", country);
-//        System.out.println(country);
+    public String editCountry(@PathVariable("id") int cid, Model model) {
+        CountryBean countryBean = mainService.editCountry(cid);
+        model.addAttribute("editCountry", countryBean);
+//        System.out.println(countryBean);
         return "EditCountry";
     }
 
-    @GetMapping("UpdateCountry")
-    public String updateCountry(Country country){
-        System.out.println(country);
-//        String result = mainService.saveCountry(countryBean);
-//        if(result.equalsIgnoreCase("Success"))
-//            System.out.println("Country Updated Successfully!!");
-//        else
-//            System.out.println("Failed to Update Country!!");
-        return "Home";
+//    @GetMapping("editCountry/{id}")
+//    public String editCountry(@PathVariable("id") int cid, Model model){
+//        Country country = mainService.editCountry(cid);
+//        model.addAttribute("editCountry", country);
+////        System.out.println(country);
+//        return "EditCountry";
+//    }
+
+    @PostMapping("UpdateCountry")
+    public String updateCountry(CountryBean countryBean){
+//        System.out.println(countryBean);
+        String result = mainService.updateCountry(countryBean);
+        if(result.equalsIgnoreCase("Success"))
+            System.out.println("Country Updated Successfully!!");
+        else
+            System.out.println("Failed to Update Country!!");
+        return "redirect:/Home";
+    }
+
+    @GetMapping("deleteCountry/{id}")
+    public String deleteCountry(@PathVariable("id") int cid){
+        String result = mainService.deleteCountry(cid);
+        if(result.equalsIgnoreCase("Success"))
+            System.out.println("Country With ID " +cid+ "Deleted Successfully");
+        else
+            System.out.println("Deletion of Country Failed!!");
+        return "redirect:/Home";
     }
 }

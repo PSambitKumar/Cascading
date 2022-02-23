@@ -53,9 +53,9 @@
             <td>${e.cid}</td>
             <td>${e.cname}</td>
             <td>
-                <a href = "/editCountry/${e.cid}">Edit</a>
+                <a href = "editCountry/${e.cid}">Edit</a>
                 |
-                <a href = "/deleteCountry/${e.cid}">Delete</a>
+                <a href = "deleteCountry/${e.cid}">Delete</a>
             </td>
         </tr>
     </c:forEach>

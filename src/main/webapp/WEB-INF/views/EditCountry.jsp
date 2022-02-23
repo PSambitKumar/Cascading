@@ -21,18 +21,20 @@
     <title>Edit Country</title>
 </head>
 <body style="margin: 100px">
-<form:form action="UpdateCountry" method="get" modelAttribute="editCountry">
+<%--OR CAN USE action="/UpdateCountry"--%>
+<form:form action="../UpdateCountry" method="post" modelAttribute="editCountry">
 <div style="margin: auto" class="form-group col-md-8">
 
     <div class="form-group row required">
         <div class="col-md-4">
             <label class="form-label control-label" >Country Name</label>
+            <form:hidden path="cid"/>
             <form:input path="cname" type="text" class="form-control" id="inputName"  placeholder="Enter Country Name"/>
                 <%--                    <small class="form-text text-muted" >Name must not contains number</small>--%>
             <div id="alert"></div>
         </div>
 
-        <form:hidden path="cid"/>
+
 
         <div id="display"></div>
 
@@ -40,7 +42,7 @@
 
             <div class="form-group row col-md-3">
                     <%--                    onclick="loadData()"--%>
-                <button id="submit"   class="btn btn-success">Submit</button>
+                <button id="submit"  type="submit" class="btn btn-success">Submit</button>
             </div>
 
             <div style="margin-left: 10px" class="form-group row col-md-3">

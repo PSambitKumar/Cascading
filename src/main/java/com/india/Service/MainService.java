@@ -19,7 +19,8 @@ public interface MainService {
     String saveCity(CityBean cityBean);
     List<City> cityListBySateId(int sid);
     String saveAddress(AddressBean addressBean);
-//    CountryBean editCountry(int cid);
-    Country editCountry(int id);
-    String updateCountry(Country country);
+    CountryBean editCountry(int cid);
+//    Country editCountry(int id);
+    String updateCountry(CountryBean countryBean);
+    String deleteCountry(int id);
 }
