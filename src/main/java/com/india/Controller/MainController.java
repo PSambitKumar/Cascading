@@ -181,4 +181,9 @@ public class MainController {
             System.out.println("Deletion of Country Failed!!");
         return "redirect:/Home";
     }
+
+    @GetMapping("ToggleCheck")
+    public String ToggleCheck(){
+        return "ToggleCheck";
+    }
 }
