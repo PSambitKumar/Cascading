@@ -38,7 +38,13 @@
 
 <h4 style="text-align: center">All Countryl Details</h4>
 
-<table id="countryTable" class="table table-striped table-bordered">
+<div class="col-md-4">
+    <label class="form-label control-label" >Search</label>
+    <input name="searchCountry" type="text" maxlength="10" id="searchCountry" tabindex="1" class="form-control names" onkeyup="seachData()">
+    <div id="printData"></div>
+</div>
+
+<table id="countryTable table" class="table table-striped table-bordered">
     <thead>
     <tr>
         <th>Sl No</th>
@@ -66,5 +72,26 @@
     </tfoot>
 
 </table>
+
+<script>
+    function seachData(){
+        var data = $('#searchCountry').val();
+
+        $.ajax({
+            type : "GET",
+            url : "SearchData",
+            data : {
+                "data" : data,
+            },
+            success : function(response) {
+                $('#display').html(response);
+            },
+            error: function (response) {
+                console.log(response);
+            }
+
+        });
+    }
+</script>
 </body>
 </html>

@@ -38,7 +38,7 @@
 <div class="row">
     <div class="col-xs-12">
         <%--        String of Panel--%>
-        <div class="panel-default" style="margin: 10px">
+        <div class="panel-default" style="margin: 150px">
 
             <%--            Start of Add and View Div--%>
             <div class="top_tab_container">

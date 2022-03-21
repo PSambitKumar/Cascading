@@ -8,12 +8,15 @@ import com.india.Bean.StateBean;
 import com.india.Entity.City;
 import com.india.Entity.Country;
 import com.india.Entity.State;
+import com.india.Repository.CountryRepository;
 import com.india.Service.MainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -21,6 +24,9 @@ public class MainController {
 
     @Autowired
     MainService mainService;
+
+    @Autowired
+    CountryRepository countryRepository;
 
     @GetMapping("Home")
     public String home(){
@@ -47,6 +53,35 @@ public class MainController {
     public String viewCountry(Model model){
         try {
             List<Country> countryList = mainService.countryList();
+
+//            Sorting Country List in Alphabetical order
+//            Method 1
+//            Comparator<Country> comparator  = new Comparator<Country>() {
+//                @Override
+//                public int compare(Country country1, Country country2) {
+//                    return country1.getCname().compareTo(country2.getCname());
+//                }
+//            };
+
+//            Method 2
+//            Comparator<Country> comparator = Comparator.comparing(Country::getCname);
+
+//            Method 3 using Lambda
+//            Comparator<Country> comparator  = (country1, country2) ->{
+//                return country1.getCname().compareTo(country2.getCname());
+//            };
+
+            //            Collections.sort(countryList, comparator);
+
+
+//            Method 4
+//                Collections.sort(countryList, (country1, country2) -> country1.getCname().compareTo(country2.getCname()));
+
+//                Method 5
+            Collections.sort(countryList, Comparator.comparing(Country::getCname));
+
+            System.out.println(countryList);
+
             model.addAttribute("list", countryList);
             System.out.println(countryList);
         }catch (Exception e){
@@ -185,5 +220,27 @@ public class MainController {
     @GetMapping("ToggleCheck")
     public String ToggleCheck(){
         return "ToggleCheck";
+    }
+
+    @ResponseBody
+    @GetMapping("CountryNames")
+    public List<String> allCountry(){
+        List<String> countryList = countryRepository.findAllCountryName();
+        System.out.println(countryList.toString());
+        return countryList;
+    }
+
+    @GetMapping("SearchData")
+    public String searchData(@RequestParam(value="data")String data, Model model){
+        try {
+            System.out.println(data);
+            List<Country> list = countryRepository.findCountryByCname(data);
+            System.out.println(list);
+            model.addAttribute("list", list);
+            return "true";
+        }catch (Exception e){
+            e.printStackTrace();
+            return "false";
+        }
     }
 }
