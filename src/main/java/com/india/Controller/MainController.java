@@ -136,7 +136,7 @@ public class MainController {
 
     @ResponseBody
     @GetMapping("GetStateListByCountryId/{cid}")
-    public String getCountryList(@PathVariable("cid") int cid){
+    public String getCountryList(@PathVariable int cid){
         Gson gson = new Gson();
 //        System.out.println(mainService.stateListByCountryId(cid));
         return gson.toJson(mainService.stateListByCountryId(cid));
@@ -234,7 +234,8 @@ public class MainController {
     public String searchData(@RequestParam(value="data")String data, Model model){
         try {
             System.out.println(data);
-            List<Country> list = countryRepository.findCountryByCname(data);
+//            List<Country> list = countryRepository.findCountryByCnameStartingWith(data);
+            List<Country> list = countryRepository.findCountryByCnameStartsWith(data);
             System.out.println(list);
             model.addAttribute("list", list);
             return "true";

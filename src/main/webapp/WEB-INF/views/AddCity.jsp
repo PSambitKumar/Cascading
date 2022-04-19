@@ -43,8 +43,7 @@
                     console.log(result);
                     var s = '';
                     for(var i = 0; i < result.length; i++) {
-                        var id =
-                    s += '<option value="' + result[i].sid + '">' + result[i].sname + '</option>';
+                        var id = s += '<option value="' + result[i].sid + '">' + result[i].sname + '</option>';
                     }
                     $('#stateDrop').html(s);
                 }

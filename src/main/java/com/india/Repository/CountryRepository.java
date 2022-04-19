@@ -11,4 +11,6 @@ public interface CountryRepository extends JpaRepository<Country, Integer> {
     @Query("SELECT cname FROM Country")
     List<String> findAllCountryName();
     List<Country> findCountryByCname(String cName);
+    List<Country> findCountryByCnameStartingWith(String cName);
+    List<Country> findCountryByCnameStartsWith(String cName);
 }
