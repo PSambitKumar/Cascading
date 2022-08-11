@@ -21,7 +21,12 @@
     <title>AddCountry</title>
 </head>
 <body style="margin: 100px">
-<form:form id="AddCountry" action="SaveCountry" method="post" modelAttribute="countryBean">
+<div class="col-12 row">
+    <div class="col-2"></div>
+    <div class="col-6"><button class="btn btn-info" style="width: 18%" onclick="add()">Add</button><button class="btn btn-light" style="width: 18%; margin-left: 1rem;" onclick="view()">View</button></div>
+</div>
+<div id="addTab">
+    <form:form id="AddCountry" action="SaveCountry" method="post" modelAttribute="countryBean">
     <div style="margin: auto" class="form-group col-md-8">
 
         <div class="form-group row required">
@@ -32,7 +37,7 @@
                 <div id="alert"></div>
             </div>
             <form:hidden path="cid"/>
-        <div id="display"></div>
+            <div id="display"></div>
 
             <div style="margin: auto; margin-top: 20px" class="form-group row col-md-6">
 
@@ -47,7 +52,56 @@
 
             </div>
 
-    </div>
-</form:form>
+        </div>
+        </form:form>
+</div>
+
+        <div id="viewTab">
+            <h4 style="text-align: center">All Countryl Details</h4>
+
+
+            <table id="dynamicTable table" class="table table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th>Sl No</th>
+                    <th>Country Name</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <c:forEach items="${list}" var="e">
+                    <tr>
+                        <td>${e.cid}</td>
+                        <td>${e.cname}</td>
+                        <td>
+                            <a href = "editCountry/${e.cid}">Edit</a>
+                            |
+                            <a href = "deleteCountry/${e.cid}">Delete</a>
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+
+
+                <tfoot>
+                </tfoot>
+
+            </table>
+        </div>
 </body>
+
+<script>
+    jQuery(function($) {
+        $('#dynamicTable').DataTable({
+            pageLength: 10,
+            paging: true,
+            searching: true,
+            order: [[0, "asc"]],
+            columnDefs: [{ orderable: true, targets: [4] }]
+        });
+    function add(){
+
+    }
+</script>
 </html>
